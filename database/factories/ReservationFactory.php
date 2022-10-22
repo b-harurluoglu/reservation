@@ -44,30 +44,30 @@ class ReservationFactory extends Factory
 
        
         $reservation = Reservation::where('place_id', $place)   
-        ->where( function($query) use ($startDate, $endDate){    
+            ->where( function($query) use ($startDate, $endDate){    
 
-            $query->orWhere( function($query) use ($startDate) {
-                $query->where('start_date', '<=', $startDate);
-                $query->where('end_date', '>=', $startDate);
-            });
+                $query->orWhere( function($query) use ($startDate) {
+                    $query->where('start_date', '<=', $startDate);
+                    $query->where('end_date', '>=', $startDate);
+                });
 
-            $query->orWhere( function($query) use ($endDate){
-                $query->where('start_date', '<=', $endDate);
-                $query->where('end_date', '>=', $endDate);
-            });
+                $query->orWhere( function($query) use ($endDate){
+                    $query->where('start_date', '<=', $endDate);
+                    $query->where('end_date', '>=', $endDate);
+                });
 
-            $query->orWhere( function($query) use ($startDate, $endDate){
-                $query->where('start_date', '>=', $startDate);
-                $query->where('end_date', '<=', $endDate);
-            });
+                $query->orWhere( function($query) use ($startDate, $endDate){
+                    $query->where('start_date', '>=', $startDate);
+                    $query->where('end_date', '<=', $endDate);
+                });
 
-            $query->orWhere( function($query) use ($startDate, $endDate){
-                $query->where('start_date', '<=', $startDate);
-                $query->where('end_date', '>=', $endDate);
-            });
+                $query->orWhere( function($query) use ($startDate, $endDate){
+                    $query->where('start_date', '<=', $startDate);
+                    $query->where('end_date', '>=', $endDate);
+                });
 
-        })->get();
- 
+            })->get();
+    
 
         if(count($reservation) >= 1) {
             return ($this->generateReservationDates($place));
