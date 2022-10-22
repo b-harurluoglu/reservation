@@ -14,4 +14,9 @@ class Place extends Model
         return $this->hasMany(Reservation::class);
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
 }
