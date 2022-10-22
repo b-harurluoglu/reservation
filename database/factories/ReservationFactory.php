@@ -35,47 +35,22 @@ class ReservationFactory extends Factory
 
     public function generateReservationDates($place)
     {
-        
         $startDate = new Carbon($this->faker->dateTimeBetween('-10 days', '+10 days')->format('Y-m-d'));
         $startDate = $startDate->format('Y-m-d');
 
         $endDate = Carbon::createFromFormat('Y-m-d', $startDate)->addDays(rand(1,5));
         $endDate = $endDate->format('Y-m-d');
 
-       
         $reservation = Reservation::where('place_id', $place)   
             ->where( function($query) use ($startDate, $endDate){    
+                $query->available($startDate, $endDate);
+            })->exists();
 
-                $query->orWhere( function($query) use ($startDate) {
-                    $query->where('start_date', '<=', $startDate);
-                    $query->where('end_date', '>=', $startDate);
-                });
-
-                $query->orWhere( function($query) use ($endDate){
-                    $query->where('start_date', '<=', $endDate);
-                    $query->where('end_date', '>=', $endDate);
-                });
-
-                $query->orWhere( function($query) use ($startDate, $endDate){
-                    $query->where('start_date', '>=', $startDate);
-                    $query->where('end_date', '<=', $endDate);
-                });
-
-                $query->orWhere( function($query) use ($startDate, $endDate){
-                    $query->where('start_date', '<=', $startDate);
-                    $query->where('end_date', '>=', $endDate);
-                });
-
-            })->get();
-    
-
-        if(count($reservation) >= 1) {
+        if($reservation) {
             return ($this->generateReservationDates($place));
         } else {
             return collect(['startDate' => $startDate, 'endDate' => $endDate]);
         }
-
-
     }
 
 }
