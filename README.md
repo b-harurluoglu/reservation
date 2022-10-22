@@ -31,7 +31,7 @@ Start the local development server
 
     php artisan serve
 
-You can now access the server at http://localhost:8000
+You can now access the server at http://127.0.0.1:8000
 
 ## Database seeding
 
@@ -41,15 +41,9 @@ Run the database seeder and you're done
 
 ----------
 
-# Testing API
+# API
 
-Run the laravel development server
-
-    php artisan serve
-
-The api can now be accessed at
-
-    http://localhost:8000/api
+Documentation: http://127.0.0.1:8000/request-docs
 
 Request headers
 
