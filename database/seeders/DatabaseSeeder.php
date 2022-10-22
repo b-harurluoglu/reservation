@@ -15,11 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {   
-        DB::table('places')->truncate();
-
         $this->call([
             CountriesTableSeeder::class,
             PlacesTableSeeder::class,
+            ReservationsTableSeeder::class,
         ])->command->info('Seeded the database! ');
     }
 }
