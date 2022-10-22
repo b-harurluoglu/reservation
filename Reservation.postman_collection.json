@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "5c8d18f3-7561-48c0-ba02-a7bc4279d5a5",
+		"name": "Reservation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Search Places",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"value": "",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/search-places?start_date=2022-10-20&end_date=2022-10-23",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"search-places"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2022-10-20"
+						},
+						{
+							"key": "end_date",
+							"value": "2022-10-23"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Place",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": "http://127.0.0.1:8000/api/place/1"
+			},
+			"response": []
+		}
+	]
+}
