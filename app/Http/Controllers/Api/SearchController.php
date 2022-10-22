@@ -11,18 +11,14 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\Reservation\AvailablePlacesRequest;
 use App\Http\Resources\PlaceCollection;
 
-class ReservationController extends Controller
+class SearchController extends Controller
 {
     use ApiResponserTrait;
 
-    public function availablePlaces(AvailablePlacesRequest $request)
+    public function index(AvailablePlacesRequest $request)
     {
         $startDate = Carbon::createFromFormat('Y-m-d', $request->start_date);
         $endDate = Carbon::createFromFormat('Y-m-d', $request->end_date);
-
-        if(!$startDate->lessThanOrEqualTo($endDate)) {
-            return $this->errorResponse('The end date cannot be greater than the start date.');
-        } 
 
         $places = Place::with('country')->whereDoesntHave('reservations', function (Builder $query) use($startDate, $endDate) {
             
@@ -48,10 +44,7 @@ class ReservationController extends Controller
 
         })->get();
 
-        if(count($places) >= 1) {
-            return $this->successResponse(new PlaceCollection($places));
-        } else {
-            return $this->errorResponse('No Records Found.');
-        }
+        return $this->successResponse(new PlaceCollection($places));
+
     }
 }

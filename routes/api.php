@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\PlaceController;
-use App\Http\Controllers\Api\ReservationController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\PlaceController;
+use App\Http\Controllers\Api\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/search-places', [ReservationController::class, 'availablePlaces']);
+Route::get('/search-places', [SearchController::class, 'index']);
 Route::get('/place/{placeId}', [PlaceController::class, 'show'])->name('places.show');
