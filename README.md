@@ -41,15 +41,7 @@ Run the database seeder and you're done
 
 ----------
 
-# Testing API
-
-Run the laravel development server
-
-    php artisan serve
-
-The api can now be accessed at
-
-    http://localhost:8000/api
+# API
 
 Request headers
 
