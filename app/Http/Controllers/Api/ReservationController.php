@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use Carbon\Carbon;
+use App\Models\Place;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\ApiResponserTrait;
-use App\Http\Requests\Reservation\AvailablePlacesRequest;
-use App\Http\Resources\PlaceResource;
-use App\Models\Place;
 use Illuminate\Database\Eloquent\Builder;
+use App\Http\Requests\Reservation\AvailablePlacesRequest;
+use App\Http\Resources\PlaceCollection;
 
 class ReservationController extends Controller
 {
@@ -49,7 +49,7 @@ class ReservationController extends Controller
         })->get();
 
         if(count($places) >= 1) {
-            return $this->successResponse(new PlaceResource($places));
+            return $this->successResponse(new PlaceCollection($places));
         } else {
             return $this->errorResponse('No Records Found.');
         }
