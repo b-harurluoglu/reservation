@@ -2,26 +2,24 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class PlaceResource extends ResourceCollection
+class PlaceResource extends JsonResource
 {
     /**
-     * Transform the resource collection into an array.
+     * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
     {
-        return $this->collection->map(function($place, $key) {									
-            return [
-                    'title'           => $place->title,
-                    'description'     => $place->description,
-                    'number_of_rooms' => $place->number_of_rooms,
-                    'address'         => $place->address,
-                    'country'         => $place->country->name
-                ];
-            });
+        return [
+            'title'           => $this->title,
+            'decription'      => $this->description,
+            'number_of_rooms' => $this->number_of_rooms,
+            'country'         => $this->country->name,
+            'address'         => $this->address,
+        ];
     }
 }

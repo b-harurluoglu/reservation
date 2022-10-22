@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PlaceController;
 use App\Http\Controllers\Api\ReservationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/search-places', [ReservationController::class, 'availablePlaces']);
+Route::get('/place/{placeId}', [PlaceController::class, 'show']);
