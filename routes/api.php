@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/search-places', [ReservationController::class, 'availablePlaces']);
-Route::get('/place/{placeId}', [PlaceController::class, 'show']);
+Route::get('/place/{placeId}', [PlaceController::class, 'show'])->name('places.show');

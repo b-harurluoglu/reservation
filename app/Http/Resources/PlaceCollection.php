@@ -21,7 +21,10 @@ class PlaceCollection extends ResourceCollection
                     'description'     => $place->description,
                     'number_of_rooms' => $place->number_of_rooms,
                     'address'         => $place->address,
-                    'country'         => $place->country->name
+                    'country'         => $place->country->name,
+                    'href'            => [
+                        'link' => route('places.show', $place->id)
+                    ]
                 ];
             });
     }
