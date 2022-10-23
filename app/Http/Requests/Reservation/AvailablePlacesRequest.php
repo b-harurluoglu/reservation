@@ -29,7 +29,7 @@ class AvailablePlacesRequest extends FormRequest
     public function rules()
     {
         return [
-            'start_date' => 'required|date_format:Y-m-d',
+            'start_date' => 'required|date_format:Y-m-d|after:yesterday',
             'end_date'   => 'required|date_format:Y-m-d|after:start_date',
         ];
     }

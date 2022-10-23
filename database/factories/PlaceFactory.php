@@ -21,7 +21,7 @@ class PlaceFactory extends Factory
     public function definition()
     {
         return [
-            'title' => 'Place '.$this->faker->unique()->randomDigitNotNull(),
+            'title' => 'Place '.$this->faker->name,
             'description' => $this->faker->text(),
             'number_of_rooms' => $this->faker->randomDigitNotNull(),
             'country_id' => Country::all()->pluck('id')->random(1)->first(),
